@@ -6,20 +6,45 @@ import TextField from "@mui/material/TextField";
 
 import styles from "../../styles/Input.module.scss";
 
+import SnackBar from "../../components/SnackBar";
+
 const AddClient = () => {
-    const [content, setContent] = useState({
-        firstName: undefined,
-        lastName: undefined,
-        cellNumber: undefined,
-        email: undefined,
+    const [customerInfo, setCustomerInfo] = useState({
+        firstName: "",
+        lastName: "",
+        cellNumber: "",
+        email: "",
+    });
+    const [openSnack, setOpenErrorSnack] = useState({
+        open: false,
+        severity: "",
+        message: "",
     });
     const onChange = (e) => {
         const { value, name } = e.target;
-        setContent((prevState) => ({ ...prevState, [name]: value }));
+        setCustomerInfo((prevState) => ({ ...prevState, [name]: value }));
+        console.log("Customer Info: ", customerInfo);
     };
     const onSubmit = async () => {
-        const { title, body } = content;
-        await axios.post("/api/entry", { title, slug: dashify(title), body });
+        console.log(customerInfo);
+        const { firstName, lastName, cellNumber, email } = customerInfo;
+        const response = await axios.post("/api/user/entry", customerInfo);
+
+        console.log("FE Response: ", response);
+
+        if (response.status === 200) {
+            setOpenErrorSnack({
+                open: true,
+                severity: "error",
+                message: response.data.message,
+            });
+        } else {
+            setOpenErrorSnack({
+                open: true,
+                severity: "success",
+                message: "New Contact Created",
+            });
+        }
     };
     return (
         <div className={styles.container}>
@@ -27,43 +52,53 @@ const AddClient = () => {
                 <h3>Add Client Contact Info</h3>
                 <TextField
                     className={styles.input}
+                    name="firstName"
                     error={false}
                     id="outlined-error"
                     label="First Name"
                     placeholder="Enter First Name"
-                    value={content.firstName}
+                    value={customerInfo.firstName}
                     onChange={onChange}
                 />
                 <TextField
                     className={styles.input}
+                    name="lastName"
                     error={false}
                     id="outlined-error"
                     label="Last Name"
                     placeholder="Enter Last Name"
-                    value={content.lastName}
+                    value={customerInfo.lastName}
                     onChange={onChange}
                 />
                 <TextField
                     className={styles.input}
+                    name="cellNumber"
                     error={false}
                     id="outlined-error"
                     label="Cellphone Number"
                     placeholder="#s Only - No Spaces"
-                    value={content.cellNumber}
+                    value={customerInfo.cellNumber}
                     onChange={onChange}
                 />
                 <TextField
                     className={styles.input}
+                    name="email"
                     error={false}
                     id="outlined-error"
                     label="E-mail Address"
                     placeholder="Enter Full Email Address"
-                    value={content.email}
+                    value={customerInfo.email}
                     onChange={onChange}
                 />
 
                 <button onClick={onSubmit}>POST</button>
             </div>
+            <SnackBar
+                openSnack={openSnack.open}
+                severity={openSnack.severity}
+                message={openSnack.message}
+                setOpenErrorSnack={setOpenErrorSnack}
+            />
         </div>
     );
 };
