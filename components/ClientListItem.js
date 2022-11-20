@@ -18,7 +18,8 @@ import styles from "../styles/components/ClientListItem.module.scss";
 
 const reviewed = true;
 
-function ClientListItem() {
+function ClientListItem({ client }) {
+    console.log(client);
     return (
         <div className={styles.container}>
             {/* <Divider /> */}
@@ -26,7 +27,9 @@ function ClientListItem() {
                 <div className={styles.avatar}>
                     <Avatar src={""} />
                 </div>
-                <div className={styles.name}>fName lName</div>
+                <div
+                    className={styles.name}
+                >{`${client.firstName} ${client.lastName}`}</div>
                 <div className={styles.star}>
                     {reviewed ? (
                         <StarIcon sx={{ color: "gold" }} />
@@ -39,11 +42,11 @@ function ClientListItem() {
             <div className={styles.body_wrapper}>
                 <div className={styles.body_content}>
                     <div className={styles.body_label}>PHONE</div>
-                    <div>9143125729</div>
+                    <div>{client.cellNumber}</div>
                 </div>
                 <div className={styles.body_content}>
                     <div className={styles.body_label}>EMAIL</div>
-                    <div>charlesmontoya79@gmail.com</div>
+                    <div>{client.email}</div>
                 </div>
             </div>
             <Divider />
