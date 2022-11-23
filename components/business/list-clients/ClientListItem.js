@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
 import StarIcon from "@mui/icons-material/Star";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
-import styles from "../styles/components/ClientListItem.module.scss";
+import styles from "../../../styles/components/business/list-clients/ClientListItem.module.scss";
 
 const reviewed = true;
 
@@ -41,12 +41,14 @@ function ClientListItem({ client }) {
 
             <div className={styles.body_wrapper}>
                 <div className={styles.body_content}>
-                    <div className={styles.body_label}>PHONE</div>
-                    <div>{client.cellNumber}</div>
-                </div>
-                <div className={styles.body_content}>
-                    <div className={styles.body_label}>EMAIL</div>
-                    <div>{client.email}</div>
+                    <div className={styles.body_leftRow}>
+                        <div className={styles.body_label}>PHONE</div>
+                        <div className={styles.body_label}>EMAIL</div>
+                    </div>
+                    <div className={styles.body_rightRow}>
+                        <div>{client.cellNumber}</div>
+                        <div>{client.email}</div>
+                    </div>
                 </div>
             </div>
             <Divider />

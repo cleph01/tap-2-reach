@@ -8,7 +8,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        background-color: rgb(108, 130, 170);
+        color: #ffffff;
+        background-color: rgb(104, 123, 158);
 
         .name {
             margin-left: 0.75rem;
@@ -36,7 +37,7 @@
             .body_label {
                 color: #a19d9d;
                 font-size: small;
-                width: 25%;
+                width: 100px;
                 text-align: right;
                 margin-right: 0.75rem;
             }

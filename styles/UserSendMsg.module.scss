@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2rem;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #e1e1e1;
+        width: 75%;
+        border-radius: 0.5rem;
+
+        .text_area {
+            margin-top: 1rem;
+            display: flex;
+            width: 100%;
+            padding: 0 0.5rem;
+        }
+
+        .select_number_wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0.5rem 0.5rem;
+        }
+
+        .button_footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+    }
+}
