@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/ClientList.module.scss";
-import ClientListItem from "../../components/user/list-clients/ClientListItem";
+import ClientListItem from "../../components/business/list-clients/ClientListItem";
 
 import db from "../../utils/db/config";
 

@@ -1,0 +1,18 @@
+.container {
+    width: 90%;
+    background-color: #ffffff;
+    margin: 1rem 0rem;
+
+    .wrapper {
+        padding: 0.75rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #ffffff;
+        background-color: rgb(104, 123, 158);
+
+        .name {
+            margin-left: 0.75rem;
+        }
+    }
+}

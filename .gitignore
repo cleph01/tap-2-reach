@@ -2,6 +2,7 @@
 
 # firebase creds
 /utils/db/serviceAccountKey.json
+/utils/db/firebaseConfig.js
  
 # dependencies
 /node_modules
