@@ -39,7 +39,7 @@ function Chats() {
                 querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
-                    sent: doc.data().created.toDate().getTime(),
+                    sent: doc.data().created.toDate(),
                 }))
             );
         });
@@ -71,9 +71,6 @@ function Chats() {
         },
         [messages]
     );
-
-    console.log("MEssages: ", messages);
-    console.log("Sender Info: ", senderInfo);
 
     return (
         <div className={styles.container}>
