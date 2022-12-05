@@ -1,0 +1,18 @@
+.ChatInputBox {
+    padding: 0px 20px 20px 20px;
+
+    .ChatInput {
+        box-sizing: border-box;
+        font: inherit;
+        width: 100%;
+        padding: 8px;
+        border: solid 2px;
+        border-color: #aaa;
+        border-radius: 6px;
+        outline: none;
+    }
+
+    .ChatInput:focus {
+        border-color: #666;
+    }
+}

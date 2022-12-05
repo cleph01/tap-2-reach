@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../../styles/components/business/dash/CellPhoneBox.module.scss";
+import styles from "../../../styles/components/business/dashboard/CellPhoneBox.module.scss";
 function CellPhoneBox({ optionName, emoji }) {
     return (
         <div className={styles.container}>

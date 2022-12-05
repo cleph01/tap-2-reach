@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../../styles/components/business/dash/OptionBox.module.scss";
+import styles from "../../../styles/components/business/dashboard/OptionBox.module.scss";
 function OptionBox({ optionName, emoji }) {
     return (
         <div className={styles.container}>

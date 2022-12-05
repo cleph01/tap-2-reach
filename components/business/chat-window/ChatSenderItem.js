@@ -16,12 +16,13 @@ import styles from "../../../styles/components/business/chat/ChatSenderItem.modu
 
 const reviewed = true;
 
-function ChatSenderItem({ sender }) {
+function ChatSenderItem({ sender, setSelectedSender }) {
     console.log(sender);
     return (
         <ListItem
             sx={{ mt: 3, boxShadow: 3 }}
             style={{ backgroundColor: "#fafafa" }}
+            onClick={() => setSelectedSender(sender)}
         >
             <ListItemAvatar>
                 <Avatar

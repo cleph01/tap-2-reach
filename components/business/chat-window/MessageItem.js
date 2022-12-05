@@ -17,7 +17,7 @@ const MessageItem = ({ message }) => {
             }
             style={{ backgroundColor: "#fafafa" }}
         >
-            <pre>{message.sent.getTime()}</pre>
+            {/* <pre>{message.sent.getTime()}</pre> */}
             <ListItemText
                 primary={message.body}
                 secondary={`${moment(message.sent).format(

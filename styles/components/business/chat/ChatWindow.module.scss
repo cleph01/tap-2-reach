@@ -5,7 +5,8 @@
 
     .messages {
         background-color: #ffffff;
-        height: 40rem;
+        max-height: 35rem;
+        overflow-y: scroll;
         width: 100%;
     }
 

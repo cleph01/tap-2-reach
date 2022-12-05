@@ -1,12 +1,33 @@
-import { useState } from "react";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import {
+    collection,
+    addDoc,
+    Timestamp,
+    query,
+    orderBy,
+    onSnapshot,
+    getDocs,
+    where,
+} from "firebase/firestore";
 
 import styles from "../../../styles/components/business/chat/ChatWindow.module.scss";
 import MessageItem from "./MessageItem";
+
 import { db } from "../../../utils/db/firebaseConfig";
 
-function ChatWindow({ messages }) {
+function ChatWindow({ messages, selectedSender }) {
     const [message, setMessage] = useState("");
+    const [showMessages, setShowMessages] = useState([]);
+
+    useEffect(() => {
+        const result = messages.filter((message) => {
+            console.log("Meesage: ", message);
+
+            return message.customerPhoneNumber === selectedSender.cellNumber;
+        });
+
+        setShowMessages(result);
+    }, [messages, selectedSender]);
 
     const onChange = (e) => {
         e.preventDefault();
@@ -20,28 +41,33 @@ function ChatWindow({ messages }) {
             const docRef = await addDoc(
                 collection(db, "outgoingTextMessages"),
                 {
-                    to: "9143125729",
-                    from: "9144001284",
+                    to: selectedSender.cellNumber,
+                    from: "+19144001284",
                     body: message,
                 }
             );
 
             if (docRef.id) {
                 const convoRef = await addDoc(collection(db, "conversation"), {
-                    businessTwilioNumber: "9144008584",
-                    customerPhoneNumber: "9143125729",
+                    businessTwilioNumber: "+19144001284",
+                    customerPhoneNumber: selectedSender.cellNumber,
                     body: message,
                     direction: "out",
                     created: Timestamp.fromDate(new Date()),
                 });
+
+                setMessage("");
+
+                console.log("Document written with ID: ", docRef.id);
             }
-            console.log("Document written with ID: ", docRef.id);
+        } else {
+            alert("Empty Message");
         }
     };
 
     return (
         <div className={styles.container}>
-            <pre>{JSON.stringify(message)}</pre>
+            <pre>{JSON.stringify(selectedSender)}</pre>
             <div className={styles.messages}>
                 {messages.map((message) => (
                     <MessageItem
@@ -55,6 +81,7 @@ function ChatWindow({ messages }) {
                 <input
                     className={styles.chat_input}
                     type="text"
+                    value={message}
                     onChange={onChange}
                 />
                 <button onClick={onSubmit}>send</button>

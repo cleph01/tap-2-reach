@@ -28,6 +28,7 @@ const Notification = () => {
             customerCell: "9143125729",
             message: "Don't forget your appt on Jan 1. 2023 @ 3:00pm",
             from: "9144001284",
+            timeZone: "America/New_York",
             notifyOn: Timestamp.fromDate(new Date(todayStr)),
             createdOn: Timestamp.fromDate(new Date()),
         };
